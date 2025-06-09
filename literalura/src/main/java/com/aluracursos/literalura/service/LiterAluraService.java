@@ -29,7 +29,7 @@ public class LiterAluraService {
             return response.body();
         }
         catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("No se pudo hacer conexion con la API "+ e);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -49,14 +49,13 @@ public class LiterAluraService {
                 .build();
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            System.out.println("Status code: " + response.statusCode());
             JsonNode json = mapper.readValue(response.body(), JsonNode.class);
             String prettyJson = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(json);
 
             return prettyJson;
         }
         catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("No se pudo hacer conexion con la API "+ e);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

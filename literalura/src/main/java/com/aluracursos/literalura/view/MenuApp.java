@@ -48,7 +48,6 @@ public class MenuApp {
         String searchingBook = null;
 
         do {
-            // TODO: Hacer menu
             System.out.printf(MENUVIEW, BANNER);
             System.out.print("Ingrese su opcion: ");
             option = br.readLine().trim().toLowerCase();
@@ -73,7 +72,6 @@ public class MenuApp {
             switch (optionMenu) {
                 case 1:
                     // Searching a book for title
-                    System.out.println("Searching a book for title");
                     System.out.print("Ingrese el titulo del libro a buscar: ");
                     searchingBook = br.readLine();
                     CONTROLLER.findBookTitle(searchingBook);
@@ -81,19 +79,16 @@ public class MenuApp {
                     break;
                 case 2:
                     // List the registered books
-                    System.out.println("List the registered books");
                     CONTROLLER.getRegisteredBooks();
                     continueAction(br);
                     break;
                 case 3:
                     // List the registered authors
-                    System.out.println("List the registered authors");
                     CONTROLLER.getRegisteredAuthors();
                     continueAction(br);
                     break;
                 case 4:
                     // List the alive authors in a determinate time
-                    System.out.println("List the alive authors in a determinate time");
                     System.out.print("Ingrese el anio en que cree que pudo estar vivo o en el cual murio el autor: ");
                     option = br.readLine();
                     if(!option.matches("^-?\\d+")) {
@@ -140,7 +135,6 @@ public class MenuApp {
             System.out.println(OPTIONLANGUAGES);
             System.out.print("Ingrese la opcion: ");
             option = br.readLine().trim().toLowerCase();
-            System.out.println("Test " +option);
             System.out.println();
 
             // Validate if the input was a number

@@ -23,7 +23,7 @@ public enum Languages {
 
     public static Languages fromString(String text) {
         for(Languages lang : Languages.values()) {
-            if(lang.languagesBooks.equalsIgnoreCase(text)) {
+            if(lang.languagesBooks.equalsIgnoreCase(text.trim())) {
                 return lang;
             }
         }
@@ -33,7 +33,7 @@ public enum Languages {
 
     public static Languages fromSpanish(String text) {
         for(Languages lang : Languages.values()) {
-            if(lang.languagesBooksSpanish.equalsIgnoreCase(text)) {
+            if(lang.languagesBooksSpanish.equalsIgnoreCase(text.trim())) {
                 return lang;
             }
         }

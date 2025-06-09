@@ -2,6 +2,7 @@ package com.aluracursos.literalura.model;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import jakarta.persistence.CascadeType;
@@ -44,18 +45,28 @@ public class Book {
                             auth.deathYear() != null ? auth.deathYear() : 0 
                         ))
                         .collect(Collectors.toList());
-        this.languages = bookData.languages()
-                         .stream()
-                         .map(lang -> {
-                            try{
-                                return Languages.fromString(lang);
-                            }
-                            catch (IllegalArgumentException e){
-                                return null;
-                            }
-                         })
-                         .filter(Objects::nonNull)
-                         .collect(Collectors.toList()).get(0);
+                        
+        List<String> langNonNull = bookData.languages();
+
+        if (langNonNull == null || langNonNull.isEmpty()) {
+            throw new IllegalArgumentException("❗ El libro con ID " + bookData.idBook() + " no tiene idiomas definidos.");
+        }
+        Optional<Languages> language = langNonNull.stream()
+                            .map(lang -> {
+                                try {
+                                    return Languages.fromString(lang);
+                                } catch (IllegalArgumentException e) {
+                                    System.out.println("Idioma no reconocido: " + lang);
+                                    return null;
+                                }
+                            })
+                            .filter(Objects::nonNull)
+                            .findFirst();
+        if (language.isEmpty()) {
+            System.out.println("❗ El libro con ID " + bookData.idBook() + " no tiene un idioma válido reconocido. Será ignorado.");
+            return;
+        }
+        this.languages = language.get();
         this.downloads = bookData.dowloads();
     }
 

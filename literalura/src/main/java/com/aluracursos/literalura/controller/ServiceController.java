@@ -38,20 +38,30 @@ public class ServiceController {
         // Check if exits at least one book
         if(data.count() > 0) {
             System.out.println("Se encontraron " + data.count() + " libros");
-            listBooks = repositoryBook.findByTitleContainingIgnoreCase(keyword);
+            listBooks = data.results().stream().map(Book::new).collect(Collectors.toList());
                             
             Optional<Book> books = listBooks.stream()
-                            .filter(b -> b.getTitle().contains(keyword))
+                            .filter(b -> b.getTitle().toLowerCase().contains(keyword.toLowerCase()))
                             .findFirst();
 
             if(books.isPresent()) {
                 var bookFind = books.get();
-                System.out.println("Libros: " + bookFind);
-                repositoryBook.save(bookFind);
-                System.out.println("El libro se registro en la base de datos");
+                // Verifica si ya existe por ID externo o título para no duplicar
+                boolean exists = repositoryBook.findByTitleContainingIgnoreCase(bookFind.getTitle()).stream()
+                    .anyMatch(b -> b.getTitle().equalsIgnoreCase(bookFind.getTitle()));
+
+                if(!exists) {
+                    repositoryBook.save(bookFind);
+                    System.out.println("El libro se registro en la base de datos");
+                }
+                else {
+                    System.out.println("El libro ya estaba registrado");
+                }
+
+                System.out.println("Libro: " + bookFind);
             }
             else {
-                System.out.println("No se registro el libro");
+                System.out.println("No se encontró un libro que coincida exactamente con el título buscado");
             }
         }
         else {
@@ -74,12 +84,12 @@ public class ServiceController {
     public void getAuthorAliveOrDeath(int year) {
         List<Author> listaAuthors = repositoryAuthor.findAll();
 
-        Optional<Author> authors = listaAuthors.stream()
+        List<Author> authors = listaAuthors.stream()
                                         .filter(auths -> year >= auths.getBirthYear() && year <= auths.getDeathYear())
-                                        .findFirst();
-        if(authors.isPresent()) {
-            var authorsFind = authors.get();
-            System.out.println("Autores vivos: " + authorsFind);
+                                        .collect(Collectors.toList());
+        if(!authors.isEmpty()) {
+            System.out.println("Autores vivos en el año " + year + ":");
+            authors.forEach(System.out::println);
         }
         else {
             System.out.println("No se encontro ningun autor vivo en esa determinada fecha");
