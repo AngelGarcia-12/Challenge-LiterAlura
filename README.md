@@ -52,60 +52,60 @@ spring.jpa.show-sql=false <- Opcional, solo si quieres ver como se realizan las 
 
 ## Ejemplo.
 En la siguiente imagen podemos observar como se ve la aplicación al final. 
-![Menu App](./github/img/github-image1.png)
+![Menu App](./literalura/github/img/github-image1.png)
 
 Si seleccionamos por ejemplo la primera opción se le pregunta al usuario el titulo de un libro que desea buscar.
 
-![Input Title Book](./github/img/github-image2.png)
+![Input Title Book](./literalura/github/img/github-image2.png)
 
 Al elegir un titulo valido, la aplicación hace una llamada a la API donde busca dicho titulo, rescata la informacion necesaria y la registra en la base de datos, por ultimo le muestra al usuario la informacion del libro.
-![Searching succeded book](./github/img/github-image3.png)
+![Searching succeded book](./literalura/github/img/github-image3.png)
 
 Si digamos buscamos el mismo libro la aplicacion nos informara que se libro ya se registro en la base de datos y no lo duplicara.
 
-![Validation duplicated book](./github/img/github-image4.png)
+![Validation duplicated book](./literalura/github/img/github-image4.png)
 
 Ahora probemos a mirar la lista de los libros que estan registrados en la base de datos.
-![List of registered books part 1](./github/img/github-image5.png)
+![List of registered books part 1](./literalura/github/img/github-image5.png)
 
-![List of registered books part 2](./github/img/github-image6.png)
+![List of registered books part 2](./literalura/github/img/github-image6.png)
 
 Ahora probemos a mirar la lista de los autores registrados en la base de datos.
 
-![List of registered authors](./github/img/github-image7.png)
+![List of registered authors](./literalura/github/img/github-image7.png)
 
 Ahora veamos los autores que estuvieron vivos en una determinada fecha.
 
-![Alive Authors](./github/img/github-image8.png)
+![Alive Authors](./literalura/github/img/github-image8.png)
 
 Por ultimo busquemos los libros registrados por un determinado idioma, para este caso se probaran los que ya estan registrados.
 
-![Search english books](./github/img/github-image9.png)
+![Search english books](./literalura/github/img/github-image9.png)
 
-![Searching spanish books](./github/img/github-image10.png)
+![Searching spanish books](./literalura/github/img/github-image10.png)
 
 ## Validaciones.
 
 1. **Opciones invalidas en menu**: Una de las primeras validaciones es entradas no validas en los menu, tenemos 2 menus y en ambos se aseguro que las entradas recibidas fueran las que se proporcionan en pantalla.
 
-![Verified input menu](./github/img/github-image11.png)
+![Verified input menu](./literalura/github/img/github-image11.png)
 
-![Verified input menu](./github/img/github-image12.png)
+![Verified input menu](./literalura/github/img/github-image12.png)
 
 **NOTA: el unico texto permitido como opcional es la palabra "salir" en caso de no querer usar 0**
 
 2. **Texto en busquedas mayusculas o minusculas**: Otra de las validaciones es las entradas de texto en las busquedas o idiomas, sea cual sea la entrada si es valida la app continuara.
 
-![Verified input text](./github/img/github-image13.png)
+![Verified input text](./literalura/github/img/github-image13.png)
 
 3. **Conexion a API**: Verifica la conexion de la API si por alguna razon se pierde la conexion este informara al usuario y terminara la app.
 
-![Error connection with API](./github/img/github-image14.png)
+![Error connection with API](./literalura/github/img/github-image14.png)
 
 4. **Autores vivos en una determinada año**: Se aseguro que no se pongan fechas invalidas a la hora de buscar autores vivos en un determinado tiempo, como años negativos o años al año de la epoca actual.
 
-![Validate year](./github/img/github-image15.png)
+![Validate year](./literalura/github/img/github-image15.png)
 
-![Validate year](./github/img/github-image16.png)
+![Validate year](./literalura/github/img/github-image16.png)
 
-![Validate year](./github/img/github-image17.png)
+![Validate year](./literalura/github/img/github-image17.png)
