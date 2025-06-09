@@ -109,12 +109,12 @@ public class Book {
 
     @Override
     public String toString() {
-        return  "\n******************************\n"+
-                "| id: " + idBook + ",\n" +
-                "| title: " + title + ",\n"+ 
-                "| authors: " + authors + ",\n"+
-                "| languages: "+ languages + ",\n"+
-                "| downloads: "+ downloads + "\n"+
-                "******************************\n";
+        return  "\n╔════════════════════════════════════════╗\n"+
+                "║ id: " + idBook + ",\n" +
+                "║ titulo: " + title + ",\n"+ 
+                "║ autores: " + authors.toString().replaceAll("[\\[\\]]", "") +
+                "║ idiomas: "+ languages + ",\n"+
+                "║ descargas: "+ downloads + "\n"+
+                "╚══════════════════════════════════════════╝\n";
     }
 }

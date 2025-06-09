@@ -51,9 +51,11 @@ public class Author {
 
     @Override
     public String toString() {
-        return "\n|\tname: " + name + ",\n"+
-               "|\tbirthYear: " + birthYear + ",\n"+ 
-               "|\tdeathYear: " + deathYear + "\n";
+        return "\n║╔********************************╗\n"+
+               "║  nombre: " + name + ",\n"+
+               "║  año de nacimiento: " + birthYear + ",\n"+ 
+               "║  año de fallecimiento: " + deathYear + "\n"+
+               "║╚********************************╝\n";
     }
 
     
